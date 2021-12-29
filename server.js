@@ -82,5 +82,5 @@ server.listen(80, (err) => {
     return console.log('error starting server: ' + err);
   }
 
-  console.log('server is listening on 8080');
+  console.log('server is listening on 80');
 });
