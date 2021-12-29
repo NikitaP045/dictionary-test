@@ -6,11 +6,11 @@ var url = require('url');
 var dictionary = null;
 
 var dictionaryHandler = (request, response) => {
-    var u = url.parse(request.url);
-
+    var u = url.parse(decodeURI(request.url));
+    //console.log(u);
     if (u.pathname == '/readyz') {
         if (dictionary) {
-            response.writeHead(200);
+            response.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
             response.end('OK');
         } else {
             response.writeHead(404);
@@ -21,15 +21,16 @@ var dictionaryHandler = (request, response) => {
 
     var key = '';
     if (u.pathname.length > 0) {
-        key = u.pathname.substr(1).toUpperCase(); 
+        //console.log(u);
+        key = u.pathname.substr(1);
     }
     var def = dictionary[key];
     if (!def) {
-        response.writeHead(404);
+        response.writeHead(404, {'Content-Type': 'text/plain; charset=utf-8'});
         response.end(key + ' was not found');
         return;
     }
-    response.writeHead(200);
+    response.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
     response.end(def);
 }
 
