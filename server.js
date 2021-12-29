@@ -77,7 +77,7 @@ downloadDictionary('https://raw.githubusercontent.com/NikitaP045/dictionary-serv
 
 const server = http.createServer(dictionaryHandler);
 
-server.listen(8080, (err) => {  
+server.listen(80, (err) => {  
   if (err) {
     return console.log('error starting server: ' + err);
   }
