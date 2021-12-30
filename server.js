@@ -3,21 +3,12 @@ var http = require('http');
 var https = require('https');
 var url = require('url');
 
-
 var dictionary = null;
 
-
 var dictionaryHandler = (request, response) => {
-    try{
-      var u = url.parse(decodeURI(request.url));
-    }catch(e) {
-      u = url.parse(request.url);
-      console.error(e);
-    }
-    
+    var u = url.parse(decodeURI(request.url));
     //console.log(u);
-    if (typeof u !== "undefined"){
-      if(u.pathname == '/readyz') {
+    if (u.pathname == '/readyz') {
         if (dictionary) {
             response.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
             response.end('OK');
@@ -26,9 +17,9 @@ var dictionaryHandler = (request, response) => {
             response.end('Not Loaded');
         }
         return;
-      }
     }
-    if (u.pathname == '/info') {
+    
+        if (u.pathname == '/info') {
         fs.readFile(__dirname + '/graph.png', function (err, content) {
             if (err) {
                 response.writeHead(400, {'Content-type':'text/html'})
@@ -43,6 +34,7 @@ var dictionaryHandler = (request, response) => {
 
           return;
       }
+
     var key = '';
     if (u.pathname.length > 0) {
         //console.log(u);
