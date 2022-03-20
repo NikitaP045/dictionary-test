@@ -5,6 +5,9 @@ var url = require('url');
 
 var dictionary = null;
 
+try{
+  
+
 var dictionaryHandler = (request, response) => {
     var u = url.parse(decodeURI(request.url));
     //console.log(u);
@@ -90,7 +93,10 @@ downloadDictionary('https://raw.githubusercontent.com/NikitaP045/dictionary-test
         console.log('ready to serve');
     });
 });
-
+}catch(e){
+  console.error(e)
+}
+  
 const server = http.createServer(dictionaryHandler);
 
 server.listen(80, (err) => {  
