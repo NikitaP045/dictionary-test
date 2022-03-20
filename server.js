@@ -14,7 +14,7 @@ var dictionaryHandler = (request, response) => {
 
 const server = http.createServer(dictionaryHandler);
 
-server.listen(80, (err) => {  
+server.listen( (err) => {  
   if (err) {
     return console.log('error starting server: ' + err);
   }
